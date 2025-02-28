@@ -1,0 +1,49 @@
+name: Deploy Helm Charts to GitHub Pages
+
+permissions:
+  contents: write
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v2
+
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.8.1
+
+      - name: Package charts
+        run: |
+          mkdir packages
+          helm package . -d packages
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Copy new packages to gh-pages
+        run: |
+          cp packages/*.tgz gh-pages/
+
+      - name: Generate index.yaml
+        run: |
+          helm repo index gh-pages --url https://thesharp.github.io/outline-vpn-chart/
+
+      - name: Commit and push to gh-pages
+        run: |
+          cd gh-pages
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add .
+          git commit -m "feat: update Helm charts" || echo "No changes to commit"
+          git push origin gh-pages
