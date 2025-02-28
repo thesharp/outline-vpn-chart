@@ -6,5 +6,5 @@
 helm repo add outline https://thesharp.github.io/outline-vpn-chart/
 helm repo update
 
-helm upgrade --install outline . -n outline --create-namespace --atomic
+helm upgrade --install outline outline/outline -n outline --create-namespace --atomic
 ```
