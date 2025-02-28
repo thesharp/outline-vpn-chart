@@ -34,6 +34,7 @@ jobs:
       - name: Copy new packages to gh-pages
         run: |
           cp packages/*.tgz gh-pages/
+          cp README.md gh-pages/
 
       - name: Generate index.yaml
         run: |
