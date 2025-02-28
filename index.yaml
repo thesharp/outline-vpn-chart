@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  outline:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-02-28T17:58:48.147452791Z"
+    description: A Helm chart for running Outline VPN server
+    digest: d3aebeccab2979a3cc8face7d83159ce4903621531452c4f2376cbdb1d052b0f
+    name: outline
+    type: application
+    urls:
+    - https://thesharp.github.io/outline-vpn-chart/outline-0.0.1.tgz
+    version: 0.0.1
+generated: "2025-02-28T17:58:48.147037071Z"
