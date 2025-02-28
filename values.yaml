@@ -1,0 +1,10 @@
+image:
+  repository: quay.io/outline/shadowbox
+  pullPolicy: IfNotPresent
+  tag: "stable"
+
+podAnnotations: {}
+podLabels: {}
+
+service:
+  type: LoadBalancer
